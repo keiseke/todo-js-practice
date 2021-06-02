@@ -1,0 +1,55 @@
+body {
+  font-family: sans-serif;
+}
+.contents {
+  width: 70%;
+}
+.inputTodoArea {
+  background-color: aqua;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.incompleteTodoArea {
+  background-color: aquamarine;
+  height: 200px;
+  border-radius: 10px;
+}
+.completeTodoArea {
+  background-color: lemonchiffon;
+  height: 200px;
+  border-radius: 10px;
+}
+input {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+}
+button {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-left: 5px;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+}
+.listRow {
+  margin-top: 5px;
+  display: flex;
+}
+.inputText {
+  height: 20px;
+}
+button:hover {
+  background-color: pink;
+  color: #fff;
+}
+p {
+  text-align: center;
+  padding-top: 10px;
+  color: gray;
+}
