@@ -3,20 +3,29 @@ const onClickAdd = () => {
   const inputText = document.getElementById("inputText").value;
   document.getElementById("inputText").value = "";
 
+  createIncompleteList(inputText);
+};
+//ボタン押下時に削除する関数
+const handleRemove = (target, area) => {
+  document.getElementById(area).removeChild(target);
+};
+
+//未完了リストに追加する関数
+const createIncompleteList = (text) => {
   //div生成
   const div = document.createElement("div");
   div.className = "listRow";
 
   //liタグ生成
   const li = document.createElement("li");
-  li.innerText = inputText;
+  li.innerText = text;
 
   //完了ボタン作成
   const completeBtn = document.createElement("button");
   completeBtn.innerText = "完了";
   completeBtn.addEventListener("click", () => {
     //押された完了ボタンの親タグ(div)を未完了リストから削除
-    handleRemove(completeBtn.parentNode);
+    handleRemove(completeBtn.parentNode, "incompleteList");
 
     //TODO内容テキストを取得
     const addTarget = completeBtn.parentNode;
@@ -32,6 +41,14 @@ const onClickAdd = () => {
     //buttonタグ生成
     const backBtn = document.createElement("button");
     backBtn.innerText = "戻す";
+    backBtn.addEventListener("click", () => {
+      //押された完了ボタンの親タグ(div)を完了リストから削除
+      handleRemove(backBtn.parentNode, "completeList");
+
+      //TODO内容テキストを取得
+      const text = backBtn.parentNode.firstElementChild.innerText;
+      createIncompleteList(text);
+    });
 
     //divタグの子要素に各要素を設定
     addTarget.appendChild(li);
@@ -45,7 +62,7 @@ const onClickAdd = () => {
   deleteBtn.innerText = "削除";
   deleteBtn.addEventListener("click", () => {
     //押された削除ボタンの親タグ(div)を未完了リストから削除
-    handleRemove(deleteBtn.parentNode);
+    handleRemove(deleteBtn.parentNode, "incompleteList");
   });
 
   //divタグの子要素に各要素を設定
@@ -59,8 +76,3 @@ const onClickAdd = () => {
 };
 
 document.getElementById("addBtn").addEventListener("click", () => onClickAdd());
-
-//ボタン押下時に削除する関数
-const handleRemove = (target) => {
-  document.getElementById("incompleteList").removeChild(target);
-};
